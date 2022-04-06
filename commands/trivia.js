@@ -1,10 +1,30 @@
 const {SlashCommandBuilder} = require('@discordjs/builders');
+const gameStartUp = require('../services/startup.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
-            .setName('user-info')
-            .setDescription('Display info abput yourself'),
+        .setName('trivia')
+        .setDescription('Manage your trivia game')
+        .addSubcommand((subcommand) => subcommand
+            .setName('create')
+            .setDescription('Create a trivia game.')
+        )
+        .addSubcommand((subcommand) => subcommand
+            .setName('close')
+            .setDescription('Close your trivia game.')
+        ),
     async execute(interaction) {
-        await interaction.reply(`Your username: ${interaction.user.name}\nYour user id: ${interaction.use.id}`);
-    },
-};
+        if (interaction.options.getSubcommand('create')) {
+            await interaction.reply(
+                await gameStartUp(interaction)
+            );
+            await interaction.followUp(await gameStartUp())
+        } else if (interaction.options.getSubcommand('close')) {
+            await interaction.reply(
+                `${interaction.user.username}, we are closing your trivia game, hope you had a good time!`
+
+                // Need a function that resets the game
+            );
+        }
+    }
+}

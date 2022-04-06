@@ -1,8 +1,11 @@
+
+const DiscordJS = require('discord.js');
 // Require the command handler that holds all command handling
 // functionality (just outsourced code from index.js)
 const Client = require('./commandHandler.js');
 // Require config.json to load all tokens and ids
-const { token } = require('./config.json');
+const dotenv = require("dotenv");
+dotenv.config();
 
 // The functionality from the command handler file is assigned to the
 // client constant to use it here.
@@ -26,11 +29,11 @@ client.on('interactionCreate', async interaction => {
         console.error(error);
         await interaction.reply({
             content: 'There was an error while executing this command!',
-            ephemeral: true
+            ephemeral: true,
         });
     }
 
 });
 
 // Login to Discord with the client's token
-client.login(token);
+client.login(process.env.TOKEN);
