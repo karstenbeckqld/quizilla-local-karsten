@@ -1,4 +1,5 @@
 const {MessageButton, MessageActionRow, MessageEmbed} = require('discord.js');
+const mcquestions = require('../services/questionsmc.js');
 const singlePlayer = 'single_player';
 const multiPlayer = 'multi_player';
 
@@ -54,21 +55,15 @@ module.exports = async function startUp(interaction) {
         console.log(`Collected: ${collected.size} items.\nCollected type: ${selectedGame}`);
     });
 
-    setTimeout(function () {
-        const confirmMessage = new MessageEmbed()
-            .setColor("RED")
-            .setTitle('Your selection')
-            .setDescription(`${selectedGame}`);
-
-        interaction.channel.send({
-            embeds: [confirmMessage],
-        });
-    }, 5000);
-
-
     if (selectedGame.toString().toLowerCase() === singlePlayer.toLowerCase()) {
         console.log('Single player selected.')
+        await interaction.reply(
+            mcquestions(interaction)
+        );
     } else if (selectedGame.toString().toLowerCase() === multiPlayer.toLowerCase()) {
         console.log('Multi player selected.')
     }
+
+
+
 }

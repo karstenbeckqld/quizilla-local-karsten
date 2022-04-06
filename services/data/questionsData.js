@@ -20,6 +20,17 @@ module.exports = {
           correct: "Julia Gillard",
           askedBefore: false,
         },
+        {
+          question: "When did WWII end?",
+          answers: [
+            '2 September 1945',
+            '1 July 1945',
+            '23 December 1945',
+            '31 January 1945'
+          ],
+          correct: '2 September 1945',
+          askedBefore: false,
+        },
       ],
     },
   ],
