@@ -16,9 +16,11 @@ module.exports = {
     async execute(interaction) {
         if (interaction.options.getSubcommand('create')) {
             await interaction.reply(
-                await gameStartUp(interaction)
-            );
-            await interaction.followUp(await gameStartUp())
+                `${interaction.user.username}, we are creating your trivia game!`,
+            await gameStartUp(interaction)
+        )
+            ;
+            //await interaction.followUp(await gameStartUp())
         } else if (interaction.options.getSubcommand('close')) {
             await interaction.reply(
                 `${interaction.user.username}, we are closing your trivia game, hope you had a good time!`

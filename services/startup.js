@@ -52,7 +52,7 @@ module.exports = async function startUp(interaction) {
     });
 
     collector.on('end', collected => {
-        console.log(`Collected: ${collected.size} items.\nCollected type: ${selectedGame}`);
+        console.log(`Collected: ${collected.size} items\nCollected type: ${selectedGame}`);
     });
 
     if (selectedGame.toString().toLowerCase() === singlePlayer.toLowerCase()) {
